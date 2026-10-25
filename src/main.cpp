@@ -1,6 +1,11 @@
 // Benchmark: Shell sort vs Seleccion directa
 // Uso: benchmark [repeticiones] [archivo_salida] [commit_hash] [tamanos]
 // Ejemplo: benchmark 30 results/resultados.csv abc1234 1000,10000,100000
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
+#include <windows.h>
+#endif
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -11,7 +16,28 @@
 #include "../include/generators.hpp"
 
 using namespace std;
-using Reloj = chrono::steady_clock;
+// Reloj de alta resolucion (devuelve milisegundos).
+// En Windows con MinGW antiguo (GCC 6.x), std::chrono::steady_clock tiene una
+// resolucion de ~0.5-15 ms, asi que se usa QueryPerformanceCounter (resolucion < 1 us).
+// En Linux/macOS (o MinGW-w64 reciente) se usa std::chrono::steady_clock.
+#ifdef _WIN32
+static double ahora_ms() {
+    static double frecuencia = 0.0;
+    if (frecuencia == 0.0) {
+        LARGE_INTEGER f;
+        QueryPerformanceFrequency(&f);
+        frecuencia = static_cast<double>(f.QuadPart);
+    }
+    LARGE_INTEGER t;
+    QueryPerformanceCounter(&t);
+    return 1000.0 * static_cast<double>(t.QuadPart) / frecuencia;
+}
+#else
+static double ahora_ms() {
+    return chrono::duration<double, milli>(
+        chrono::steady_clock::now().time_since_epoch()).count();
+}
+#endif
 
 typedef void (*FuncionOrden)(vector<int>&, int, Metrics&);
 
@@ -59,11 +85,11 @@ int main(int argc, char* argv[]) {
                     vector<int> A = original;   // copia (fuera del cronometro)
                     Metrics m;
 
-                    auto t0 = Reloj::now();
+                    double t0 = ahora_ms();
                     alg.f(A, n, m);
-                    auto t1 = Reloj::now();
+                    double t1 = ahora_ms();
 
-                    double ms = chrono::duration<double, milli>(t1 - t0).count();
+                    double ms = t1 - t0;
 
                     out << alg.nombre << ',' << n << ',' << patron << ',' << r << ','
                         << ms << ',' << m.comparaciones << ',' << m.intercambios << ','
