@@ -1,0 +1,27 @@
+
+# Ejecutables de C++
+*.exe
+*.o
+*.obj
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Resultados de pruebas
+results/prueba.csv
+results/tiempo.csv
+
+# Resultados antiguos
+results_antiguos/
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos temporales de editores
+.vscode/
+*.tmp
+*.bak
