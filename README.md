@@ -82,7 +82,9 @@ Genera `results/tabla_tiempos.csv`, `results/tabla_tiempos.md` y las gráficas e
 
 ## Resultados clave
 
-[COMPLETAR: 3 o 4 conclusiones con los datos de `results/tabla_tiempos.md` e imágenes de `results/figuras/`.]
+<img width="2250" height="1200" alt="tiempo_vs_n" src="https://github.com/user-attachments/assets/bde81d8d-2fde-47bf-8c38-7861d80beedf" />
+<img width="2250" height="1200" alt="comparaciones_vs_n" src="https://github.com/user-attachments/assets/58f5dece-5028-469a-b7c5-eaece52d764e" />
+
 
 ## Versión final
 
