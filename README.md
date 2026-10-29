@@ -5,7 +5,7 @@ ordenación internos en C++: **Shell sort** (logarítmico) y **Selección direct
 sobre distintos tamaños y patrones de entrada.
 
 ## Video
-https://youtu.be/Pl25N0JiYCg
+https://youtu.be/Il3x20tllMU
 
 ## Objetivos
 
