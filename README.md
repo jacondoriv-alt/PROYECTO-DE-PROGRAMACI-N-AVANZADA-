@@ -4,6 +4,9 @@ Proyecto de la Unidad 01 (Evaluación de producto). Se comparan dos algoritmos d
 ordenación internos en C++: **Shell sort** (logarítmico) y **Selección directa** (método directo),
 sobre distintos tamaños y patrones de entrada.
 
+## Video
+https://youtu.be/Pl25N0JiYCg
+
 ## Objetivos
 
 - Implementar correctamente los dos algoritmos, instrumentados con contadores.
